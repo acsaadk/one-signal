@@ -323,137 +323,8 @@ module.exports = {
       }
     };
 
-    const _self = {
-      reset: () => {
-        message = {
-          included_segments: ['All']
-        };
-        return _self;
-      },
-      setApp: (id) => {
-        _appID = id || null;
-        return _self;
-      },
-      apps: _apps,
-      notifications: _notifications
-    };
-
-
-
-    _self.reset();
-    return _self;
-  }
-    };
-/*
-module.exports = function(userAuthKey, restAPIKey) {
-  const _userAuthKey = userAuthKey;
-  const _restAPIKey = restAPIKey;
-  const _url = "https://onesignal.com/api/v1/";
-  const _requestPromise = require('request-promise');
-
-  return {
-    apps: {
-      all: function(){
-        const _options = {
-          uri: _url + "apps",
-          headers: {
-            'Authorization': 'Basic ' + _userAuthKey
-          },
-          json: true
-        };
-        return _requestPromise(_options);
-      },
-      findOne: function(id){
-        const _id = id || null;
-        if(_id === null){
-          throw("Application ID is missing");
-        }
-        const _options = {
-          uri: _url + "apps/" + _id,
-          headers: {
-            'Authorization': 'Basic ' + _userAuthKey
-          },
-          json: true
-        };
-        return _requestPromise(_options);
-      },
-      create: function(appObj){
-        const flag = appObj || null;
-        if(falg === null){
-          throw("App Object parameter is missing");
-        }
-        const _app = {
-          apns_env: appObj.apns_env || null,
-          apns_p12: appObj.apns_p12 || null,
-          apns_p12_password: appObj.apns_p12_password || null,
-          gcm_key: appObj.gcm_key || null,
-          chrome_key: appObj.chrome_key || null,
-          safari_apns_12: appObj.safari_apns_12 || null,
-          site_name: appObj.site_name || null,
-          safari_site_origin: appObj.safari_site_origin || null,
-          safari_icon_16_16: appObj.safari_icon_16_16 || 'public/safari_packages/icons/16x16.png',
-          safari_icon_32_32: appObj.safari_icon_32_32 || 'public/safari_packages/icons/16x16@2x.png',
-          safari_icon_64_64: appObj.safari_icon_64_64 || 'public/safari_packages/icons/32x32@2x.png',
-          safari_icon_128_128: appObj.safari_icon_128_128 || 'public/safari_packages/icons/128x128.png',
-          safari_icon_256_256: appObj.safari_icon_256_256 || 'public/safari_packages/icons/128x128@2x.png',
-          chrome_web_origin: appObj.chrome_web_origin || null,
-          chrome_web_gcm_sender_id: appObj.chrome_web_gcm_sender_id || null,
-          chrome_web_sub_domain: appObj.chrome_web_sub_domain || null
-        };
-        const _options = {
-          uri: _url + "apps",
-          method: "POST",
-          headers: {
-            'Authorization': 'Basic ' + _userAuthKey,
-            'Content-Type': 'application/json'
-          },
-          body: _app,
-          json: true
-        };
-        return _requestPromise(options);
-      },
-      update: function(appObj){
-        const flag = appObj || null;
-        if(flag === null){
-          throw("App Object parameter is missing");
-        }
-        const _id = appObj.id || null;
-        if(_id === null){
-          throw("Application ID is missing");
-        }
-        const _app = {
-          apns_env: appObj.apns_env,
-          apns_p12: appObj.apns_p12,
-          apns_p12_password: appObj.apns_p12_password,
-          gcm_key: appObj.gcm_key,
-          chrome_key: appObj.chrome_key,
-          safari_apns_12: appObj.safari_apns_12,
-          site_name: appObj.site_name,
-          safari_site_origin: appObj.safari_site_origin,
-          safari_icon_16_16: appObj.safari_icon_16_16,
-          safari_icon_32_32: appObj.safari_icon_32_32,
-          safari_icon_64_64: appObj.safari_icon_64_64,
-          safari_icon_128_128: appObj.safari_icon_128_128,
-          safari_icon_256_256: appObj.safari_icon_256_256,
-          chrome_web_origin: appObj.chrome_web_origin,
-          chrome_web_gcm_sender_id: appObj.chrome_web_gcm_sender_id,
-          chrome_web_sub_domain: appObj.chrome_web_sub_domain
-        };
-        const _options = {
-          uri: _url + "apps/" + _id,
-          method: "PUT",
-          headers: {
-            'Authorization': 'Basic ' + _userAuthKey,
-            'Content-Type': 'application/json'
-          },
-          body: _app,
-          json: true
-        };
-        return _requestPromise(options);
-      }
-    },
-    players: {
-      all: function(app_id, limit, offset){
+    const _players = {
+      all: function(app_id, limit, offset) {
         const _appId = app_id || null;
         if(_appId === null){
           throw("Application ID is missing");
@@ -488,37 +359,25 @@ module.exports = function(userAuthKey, restAPIKey) {
         };
         return _requestPromise(_options);
       }
-    },
-    notifications: {
-      send: function(message){
-        const flag = message || null;
-        if(flag === null){
-            throw("Message object parameter is missing");
-        }
-        const _appId = message.app_id || null;
-        message.contents = message.contents || {};
-        message.content_available = message.content_available || false;
-        message.android_background_data = message.android_background_data || false;
-        message.amazon_background_data = message.amazon_background_data || false;
-        message.template_id = message.template_id || null;
-        if(_appId === null){
-          throw("Application ID is missing");
-        }
-        if(message.contents === {} && message.content_available === false && message.android_background_data === false && message.amazon_background_data === false && message.template_id === null){
-          throw("Message content is missing");
-        }
-        const _options = {
-          uri: _url + "notifications",
-          method: "POST",
-          headers: {
-            'Authorization': 'Basic ' + _restAPIKey,
-            'Content-Type': 'application/json'
-          },
-          body: message,
-          json: true
+    };
+
+    const _self = {
+      reset: () => {
+        message = {
+          included_segments: ['All']
         };
-        return _requestPromise(_options);
-      }
-    }
-  };
-};*/
+        return _self;
+      },
+      setApp: (id) => {
+        _appID = id || null;
+        return _self;
+      },
+      apps: _apps,
+      notifications: _notifications,
+      players: _players
+    };
+    
+    _self.reset();
+    return _self;
+  }
+};
