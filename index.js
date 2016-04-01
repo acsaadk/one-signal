@@ -220,8 +220,6 @@ module.exports = {
         return _requestPromise(_options);
       }
     };
-
-
     const _apps = {
       all: () => {
         const _options = {
@@ -322,7 +320,6 @@ module.exports = {
         return _requestPromise(options);
       }
     };
-
     const _players = {
       all: function(app_id, limit, offset) {
         const _appId = app_id || null;
@@ -376,7 +373,7 @@ module.exports = {
       notifications: _notifications,
       players: _players
     };
-    
+
     _self.reset();
     return _self;
   }
