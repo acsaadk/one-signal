@@ -5,9 +5,6 @@ module.exports = {
     const _userAuthKey = userAuthKey || process.env.ONESIGNAL_USER_AUTH_KEY || null;
     const _restAPIKey = restAPIKey || process.env.ONESIGNAL_REST_API_KEY || null;
     var _appID = process.env.ONESIGNAL_APP_ID || null;
-    var message = {
-      included_segments: ['All']
-    };
     const _url = "https://onesignal.com/api/v1/";
     const _requestPromise = require('request-promise');
     if(_userAuthKey === null){
@@ -232,6 +229,7 @@ module.exports = {
         return _requestPromise(_options);
       }
     };
+    _self.reset();
     return _self;
   }
 };

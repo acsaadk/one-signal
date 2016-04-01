@@ -10,7 +10,7 @@
     "one-signal"
   ],
   "author": "Antonio Saad",
-  "license": "MIT",
+  "license": "GNU",
   "dependencies": {
     "request-promise": "^2.0.1"
   }
