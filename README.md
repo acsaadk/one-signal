@@ -1,2 +1,4 @@
 # one-signal
-Node SDK to send push notifications consuming Onesignal's API
+Nodejs SDK to send push notifications consuming Onesignal's API
+
+SDK documentation, coming soon
